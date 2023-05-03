@@ -1,4 +1,5 @@
 <?php
+
 /** 
  * This file is the root file for the application
  *
@@ -10,6 +11,7 @@
 use kingstonenterprises\app\controllers\SiteController;
 use kingstonenterprises\app\controllers\AuthController;
 use kingstonenterprises\app\controllers\DashboardController;
+use kingstonenterprises\app\controllers\CatergoryController;
 use kingstonenterprises\app\models\Visitor;
 
 use kingston\icarus\Application;
@@ -60,4 +62,13 @@ $app->router->get('/auth/logout', [AuthController::class, 'logout']);
 $app->router->get('/dashboard', [DashboardController::class, 'index']);
 $app->router->get('/update/profile', [DashboardController::class, 'updateProfile']);
 $app->router->post('/update/profile', [DashboardController::class, 'updateProfile']);
+
+//Catergories controller
+$app->router->get('/catergories', [CatergoryController::class, 'index']);
+$app->router->get('/catergories/new/', [CatergoryController::class, 'create']);
+$app->router->post('/catergories/new/', [CatergoryController::class, 'create']);
+$app->router->get('/catergories/update/{id}', [CatergoryController::class, 'update']);
+$app->router->post('/catergories/update/{id}', [CatergoryController::class, 'update']);
+$app->router->post('/catergories/delete/{id}', [CatergoryController::class, 'delete']);
+
 $app->run();

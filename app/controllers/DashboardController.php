@@ -13,11 +13,12 @@ use kingston\icarus\Application;
 use kingston\icarus\Controller;
 use kingston\icarus\Request;
 use kingston\icarus\helpers\Collection;
-
+use kingstonenterprises\app\models\ItemCatergory;
 use kingstonenterprises\app\models\User;
 use kingstonenterprises\app\models\Visitor;
 use kingstonenterprises\app\models\Role;
 use kingstonenterprises\app\models\Permission;
+
 
 /**
  * controls the the sites dashboard views
@@ -49,6 +50,7 @@ class DashboardController extends Controller
         $userModel = new User;
         $roleModel = new Role;
         $permissionModel = new Permission;
+        $catergoriesModel = new ItemCatergory;
 
         $visitors = new Collection($visitorModel->getAll());
 
@@ -59,13 +61,14 @@ class DashboardController extends Controller
         $perm = $permissionModel->findOne(['user_id' => Application::$app->session->get('user')]);
         $user->role = $roleModel->findOne(['id' => $perm->role_id]);
 
+        $catergories = $catergoriesModel->getAll();
         // var_dump($user);exit();
 
         return $this->render('dashboard/index', [
             'title' => 'Dashboard',
             'visitors' => $visitors->count(),
-            'user' => $user
-
+            'user' => $user,
+            'catergories' => count($catergories)
         ]);
     }
 
