@@ -12,7 +12,9 @@ use kingstonenterprises\app\controllers\SiteController;
 use kingstonenterprises\app\controllers\AuthController;
 use kingstonenterprises\app\controllers\DashboardController;
 use kingstonenterprises\app\controllers\CatergoryController;
+use kingstonenterprises\app\controllers\ItemsController;
 use kingstonenterprises\app\models\Visitor;
+
 
 use kingston\icarus\Application;
 
@@ -70,5 +72,13 @@ $app->router->post('/catergories/new/', [CatergoryController::class, 'create']);
 $app->router->get('/catergories/update/{id}', [CatergoryController::class, 'update']);
 $app->router->post('/catergories/update/{id}', [CatergoryController::class, 'update']);
 $app->router->post('/catergories/delete/{id}', [CatergoryController::class, 'delete']);
+
+// Items Controller
+$app->router->get('/items', [ItemsController::class, 'index']);
+$app->router->get('/items/new/', [ItemsController::class, 'create']);
+$app->router->post('/items/new/', [ItemsController::class, 'create']);
+$app->router->get('/items/update/{id}', [ItemsController::class, 'update']);
+$app->router->post('/items/update/{id}', [ItemsController::class, 'update']);
+
 
 $app->run();

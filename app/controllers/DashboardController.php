@@ -14,6 +14,7 @@ use kingston\icarus\Controller;
 use kingston\icarus\Request;
 use kingston\icarus\helpers\Collection;
 use kingstonenterprises\app\models\ItemCatergory;
+use kingstonenterprises\app\models\Item;
 use kingstonenterprises\app\models\User;
 use kingstonenterprises\app\models\Visitor;
 use kingstonenterprises\app\models\Role;
@@ -51,6 +52,7 @@ class DashboardController extends Controller
         $roleModel = new Role;
         $permissionModel = new Permission;
         $catergoriesModel = new ItemCatergory;
+        $itemsModel = new Item;
 
         $visitors = new Collection($visitorModel->getAll());
 
@@ -62,13 +64,15 @@ class DashboardController extends Controller
         $user->role = $roleModel->findOne(['id' => $perm->role_id]);
 
         $catergories = $catergoriesModel->getAll();
+        $items = $itemsModel->getAll();
         // var_dump($user);exit();
 
         return $this->render('dashboard/index', [
             'title' => 'Dashboard',
             'visitors' => $visitors->count(),
             'user' => $user,
-            'catergories' => count($catergories)
+            'catergories' => count($catergories),
+            'items' => count($items)
         ]);
     }
 

@@ -35,7 +35,6 @@ class AuthController extends Controller
         
         if ($request->getMethod() === 'post') {
             $user->loadData($request->getBody());
-            
             if ($user->loginValid()) {
             	$user = $user->findOne(['email' => $request->getBody()['email']]); 
 

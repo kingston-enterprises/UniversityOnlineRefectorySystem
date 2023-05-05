@@ -102,7 +102,7 @@ class CatergoryController extends Controller
         if ($request->getMethod() === 'post') {
             $catergory->loadData($request->getBody());
 
-            if ($catergory->validate(['title']) && $catergory->update($catergory->id)) {
+            if ($catergory->validate() && $catergory->update($catergory->id)) {
 
                 Application::$app->session->setFlash('success', 'New catergory created');
                 Application::$app->response->redirect('/catergories');

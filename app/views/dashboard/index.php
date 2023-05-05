@@ -41,10 +41,10 @@ use kingston\icarus\Application;
                                 </a>
                             </div>
                             <div class="m-3 bg-white shadow border rounded-lg p-4" aria-label="total visitors stats">
-                                <div class="flex items-center" aria-label="total visitors">
-                                    <span class="text-xl sm:text-xl leading-none font-bold text-gray-900">0</span>
-                                    <h3 class="text-base font-normal text-gray-500">Comments</h3>
-                                </div>
+                            <a href='/items' class="flex items-center" aria-label="total visitors">
+                                    <span class="text-xl sm:text-xl leading-none font-bold text-gray-900"><?php echo $items; ?></span>
+                                    <h3 class="text-base font-normal text-gray-500">Items</h3>
+</a>
                             </div>
 
                         </div>
