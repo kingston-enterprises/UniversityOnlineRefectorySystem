@@ -43,7 +43,7 @@ class Item extends DbModel
     public function __construct()
     {
         $this->setAttributes(
-            ['title', 'description', 'price', 'catergory_id', 'img_src']
+            ['title', 'description', 'price', 'available', 'catergory_id', 'img_src']
         );
         // form submission rules
         $this->setRules(
