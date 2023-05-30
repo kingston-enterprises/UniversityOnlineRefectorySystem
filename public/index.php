@@ -79,6 +79,8 @@ $app->router->get('/items/new/', [ItemsController::class, 'create']);
 $app->router->post('/items/new/', [ItemsController::class, 'create']);
 $app->router->get('/items/update/{id}', [ItemsController::class, 'update']);
 $app->router->post('/items/update/{id}', [ItemsController::class, 'update']);
+$app->router->get('/items/delete/{id}', [ItemsController::class, 'delete']);
+$app->router->post('/items/delete/{id}', [ItemsController::class, 'delete']);
 
 
 $app->run();

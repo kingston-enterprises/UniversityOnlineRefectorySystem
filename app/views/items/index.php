@@ -32,7 +32,9 @@ $form = new Form();
                         </div>
                         <div class="w-4/12 flex flex-col">
                             <h4><?php echo $item->title; ?></h4>
-                            <p><?php echo $item->description; ?></p>
+                            <p><?php echo $item->description;
+                            \var_dump($item); ?></p>
+                            <p>Available: <?php echo ($item->available == 1) ? "Yes" : "No";?></p>
                         </div>
                         <div class=" w-4/12 flex flex-row justify-center">
                             <div class="m-3 bg-white shadow border rounded-lg p-4" aria-label="total visitors stats">
@@ -41,7 +43,7 @@ $form = new Form();
                                 </a>
                             </div>
                             <div class="m-3 bg-white shadow border rounded-lg p-4" aria-label="total visitors stats">
-                                <?php $form = Form::begin('/catergories/delete/' . $item->id, 'post') ?>
+                                <?php $form = Form::begin('/items/delete/' . $item->id, 'post') ?>
                                 <button type="submit" class="flex items-center cursor-pointer " aria-label="total visitors">
                                     <h3 class="text-base font-normal text-gray-500">Delete</h3>
                                 </button>
