@@ -72,7 +72,6 @@ class ItemsController extends Controller
 
         if ($request->getMethod() === 'post') {
             $itemsModel->loadData($request->getBody());
-
             $itemsModel->available = 0;
 
             $catergory = $catergoryModel->findOne(['title' => $request->getBody()['catergory']]);
@@ -127,38 +126,33 @@ class ItemsController extends Controller
                 ['id' => $request->getRouteParam('id')]
             )[0]
         );
+        
         if ($request->getMethod() === 'post') {
             $itemsModel->loadData($request->getBody());
 
             if (isset($request->getBody()['available'])) {
                 $itemsModel->available = 1;
-                var_dump($itemsModel);
             }
+                // var_dump($itemsModel->available);exit();
 
-        $catergoryModel = new ItemCatergory;
 
-                $catergory = $catergoryModel->findOne(['title' => $request->getBody()['catergory']]);
-                $itemsModel->catergory_id = $catergory->id;
+            $catergoryModel = new ItemCatergory;
 
-                $img_src = new File($request->getFiles('img_src'));
-                if($img_src != $itemsModel->img_src){
+            $catergory = $catergoryModel->findOne(['title' => $request->getBody()['catergory']]);
+            $itemsModel->catergory_id = $catergory->id;
+
+            $img_src = new File($request->getFiles('img_src'));
+
+            if (!empty($img_src->name) && $img_src->name != $itemsModel->img_src) {
                 $itemsModel->img_src = $img_src->getProp('name');
-                if(move_uploaded_file($img_src->getProp('tmp_name'), './img/'.$img_src->getProp('name'))){
-                echo 'falure';
+                if (move_uploaded_file($img_src->getProp('tmp_name'), './img/' . $img_src->getProp('name'))) {
+                    echo 'falure';
                 }
-                }
+            } 
 
-            //     // var_dump($itemsModel);exit();
 
-               
-                if ($itemsModel->validate() && $itemsModel->save()) {
 
-                    Application::$app->session->setFlash('success', 'New catergory created');
-                    Application::$app->response->redirect('/items');
-                    return 'Show success page';
-                }
-
-            if ($item->validate() && $item->update($item->id)) {
+            if ($itemsModel->update($itemsModel->id)) {
 
                 Application::$app->session->setFlash('success', 'New catergory created');
                 Application::$app->response->redirect('/items');
@@ -176,38 +170,45 @@ class ItemsController extends Controller
         ]);
     }
 
-    // /**
-    //  * delete a new catergory
-    //  * 
-    //  * @param Request
-    //  * @return string
-    //  */
-    // public function delete(Request $request)
-    // {
+    /**
+     * delete a new catergory
+     * 
+     * @param Request
+     * @return string
+     */
+    public function delete(Request $request)
+    {
 
-    //     if (Application::isGuest()) {
-    //         Application::$app->session->setFlash('warning', 'You need To Login first');
-    //         Application::$app->response->redirect('/auth/login');
-    //     }
+        if (Application::isGuest()) {
+            Application::$app->session->setFlash('warning', 'You need To Login first');
+            Application::$app->response->redirect('/auth/login');
+        }
+        
+        $itemsModel = new Item;
+        // FIXME:HY000 - SQLSTATE[HY000]: General error: could not call class constructor 
+        $itemsModel->loadData(
+            $itemsModel->findAll(
+                ['id' => $request->getRouteParam('id')]
+            )[0]
+        );
 
-    //     $catergoriesModel = new ItemCatergory;
-    //     $catergory = $catergoriesModel->findOne(['id' => $request->getRouteParam('id')]);
+        if ($request->getMethod() === 'post') {
 
-    //     if ($request->getMethod() === 'post') {
+            if ($itemsModel->delete($itemsModel->id)) {
 
-    //         if ($catergory->delete($catergory->id)) {
+                Application::$app->session->setFlash('success', 'item deleted');
+                Application::$app->response->redirect('/items');
+                return 'Show success page';
+            }
+        }
 
-    //             Application::$app->session->setFlash('success', 'catergory deleted');
-    //             Application::$app->response->redirect('/catergories');
-    //             return 'Show success page';
-    //         }
-    //     }
+        $itemModel = new Item;
 
-    //     $catergories = new Collection($catergoriesModel->getAll());
+        $items = new Collection($itemModel->getAll());
 
-    //     return $this->render('catergories/index', [
-    //         'title' => 'Catergories Dashboard',
-    //         'catergories' => $catergories
-    //     ]);
-    // }
+        return $this->render('items/index', [
+            'title' => 'Items Dashboard',
+            'items' => $items
+        ]);
+    }
 }
