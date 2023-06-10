@@ -1,40 +1,18 @@
 <?php
 
-/**
- * @category controllers
- * @author kingston-5 <qhawe@kingston-enterprises.net>
- * @license For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace kingstonenterprises\app\controllers;
 
 use kingston\icarus\helpers\Collection;
 use kingston\icarus\helpers\File;
-
-
-
 use kingston\icarus\Application;
 use kingston\icarus\Controller;
 use kingston\icarus\Request;
 use kingstonenterprises\app\models\Item;
 use kingstonenterprises\app\models\ItemCatergory;
 
-
-
-/**
- * controls the the sites items CRUD operations
- *
- * @extends \kingston\icarus\Controller
- */
 class ItemsController extends Controller
 {
 
-    /**
-     * collect items and render index view
-     * 
-     * @return string
-     */
     public function index()
     {
 
@@ -53,12 +31,6 @@ class ItemsController extends Controller
         ]);
     }
 
-    /**
-     * create a new catergory or render the creation form
-     * 
-     * @param Request
-     * @return string
-     */
     public function create(Request $request)
     {
 
@@ -71,6 +43,7 @@ class ItemsController extends Controller
         $catergoryModel = new ItemCatergory;
 
         if ($request->getMethod() === 'post') {
+            // \var_dump($_FILES);exit();
             $itemsModel->loadData($request->getBody());
             $itemsModel->available = 0;
 
@@ -130,8 +103,11 @@ class ItemsController extends Controller
         if ($request->getMethod() === 'post') {
             $itemsModel->loadData($request->getBody());
 
-            if (isset($request->getBody()['available'])) {
+            if (isset($request->getBody()['availability'])) {
                 $itemsModel->available = 1;
+            }else {
+                $itemsModel->available = 0;
+
             }
                 // var_dump($itemsModel->available);exit();
 
