@@ -22,7 +22,7 @@ $form = new Form();
 
                     <div class="text-sm-center">
                         <p class="m-4 text-sm" aria-label="">
-                            Already have an acount?
+                            Dont have an acount?
                             <a href="/auth/register" class="fs-6">
                                 Register Here</a>.
                         </p>
