@@ -1,12 +1,5 @@
 <?php
 
-/** 
- * This file is the root file for the application
- *
- * @author kingston-5 <qhawe@kingston-enterprises.net>
- * @license For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
 
 use kingstonenterprises\app\controllers\SiteController;
 use kingstonenterprises\app\controllers\AuthController;
@@ -32,6 +25,7 @@ $config = [
 ];
 
 $app = new Application(dirname(__DIR__), $config);
+
 
 $app->on(Application::EVENT_BEFORE_REQUEST, function () {
     $visitor = new Visitor();

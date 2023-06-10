@@ -10,54 +10,66 @@ if (!Application::isGuest()) {
         'id' => Application::$app->session->get('user')
     ]);
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
-    <link rel="stylesheet" href="/css/output.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- bosststrap css cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!-- bootstrap js cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <!-- popper js cdn -->
 </head>
 
-<body class="m-0 p-0 bg-gray-100">
-    <nav class="m-0 p-3 flex flex-row bg-red-500 justify-between text-white text-2xl font-light underline">
-        <div>
-            <a href="/">Home</a>
-        </div>
-        <div>
-            <ul class="flex flex-row justify-around">
-                <?php if (Application::isGuest()) : ?>
-                    <li class="mx-2">
-                        <a href="/auth/login/">Login</a>
-                    </li>
-                    <li class="mx-2">
-                        <a href="/auth/register/">Register</a>
-                    </li>
-                <?php else : ?>
-                    <li class="mx-2">
-                        <a href="/dashboard">
-                            <?php echo $user->getDisplayName() ?>
-                        </a>
-                    </li>
-                    <li class="mx-2">
-                        <a href="/auth/logout">
-                            Logout
-                        </a>
-                    </li>
-                <?php endif; ?>
-            </ul>
+<body class="">
+    <nav class="navbar navbar-expand-lg bg-warning-tertiary">
+        <div class="container-fluid">
+            <a class="nav-link active" href="/">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav">
+                    <?php if (Application::isGuest()) : ?>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/auth/login/">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/auth/register/">Register</a>
+                        </li>
+                    <?php else : ?>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/dashboard">
+                                <?php echo $user->getDisplayName() ?>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/auth/logout">
+                                Logout
+                            </a>
+                        </li>
+                    <?php endif; ?>
+
+                </ul>
+            </div>
         </div>
     </nav>
 
     <?php if (Application::$app->session->getFlash('success')) : ?>
-        <div class="bg-green-100 rounded-lg py-5 px-6 mb-4 text-base text-green-700" role="alert">
+        <div class="alert alert-success d-flex align-items-center" role="alert">
             <p><?php echo Application::$app->session->getFlash('success') ?></p>
         </div>
     <?php elseif (Application::$app->session->getFlash('warning')) : ?>
-        <div class="bg-orange-100 rounded-lg py-5 px-6 mb-4 text-base text-orange-700" role="alert">
+        <div class="alert alert-warning" role="alert">
             <p><?php echo Application::$app->session->getFlash('warning') ?></p>
         </div>
     <?php endif; ?>
