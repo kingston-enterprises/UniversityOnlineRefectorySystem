@@ -5,93 +5,31 @@ use kingston\icarus\Application;
 <title><?php echo $title ?></title>
 
 <!-- Main section -->
-<section id="dashboard" class="h-screen p-10" aria-label="Dashboard Section">
-    <div class="mb-32 text-gray-800" aria-label="Dashboard Section">
-        <div class="flex flex-col justify-between relative overflow-none bg-no-repeat bg-cover">
+<section class="p-10" style="width: 100vw;">
+    <div class="container d-flex align-items-center justify-content-center border rounded p-5" style="width: 80%;">
 
-        </div>
-        <div class="container w-full flex justify-center text-gray-800 px-4 md:px-12">
+        <div class="card m-2" style="width: 80%">
+            <div class="card-header">
+                Dashboard
+            </div>
 
-            <div class="w-10/12 rounded-lg shadow-lg py-10 md:py-8 bg-white px-4 md:px-6">
-                <div class="p-5 mb-12 flex flex-row flex-wrap items-center justify-center lg:justify-start">
-                    <img class="m-2 max-h-40 rounded-full" src="/img/person-icon.png" alt="default Profile Picture">
-                    <div class="">
-
-                        <h1> <?php echo $user->getDisplayName(); ?> </h1>
-
-                        <h2><?php echo $user->email; ?></h2>
-                        <h2>since: <?php echo $user->joined; ?></h2>
-                        <h2>role: <?php echo $user->role->getDisplayName(); ?></h2>
-
-                        <div class="p-3 flex flex-row flex-wrap">
-
-                            <a class="text-blue-500 mx-1 underline text-sm" href="/update/profile">
-                                Edit Profile
-                            </a>
-                            <a class="text-blue-500 mx-1 underline text-sm" href="#">
-                                Upload Profile Picture
-                            </a>
-                        </div>
-
-                        <div class="flex flex-row flex-wrap">
-                            <div class="m-3 bg-white shadow border rounded-lg p-4" aria-label="total visitors stats">
-                                <a href='/catergories' class="flex items-center cursor-pointer " aria-label="total visitors">
-                                    <span class="text-xl sm:text-xl leading-none font-bold text-gray-900"><?php echo $catergories; ?> </span>
-                                    <h3 class="text-base font-normal text-gray-500"> Catergories</h3>
-                                </a>
-                            </div>
-                            <div class="m-3 bg-white shadow border rounded-lg p-4" aria-label="total visitors stats">
-                            <a href='/items' class="flex items-center" aria-label="total visitors">
-                                    <span class="text-xl sm:text-xl leading-none font-bold text-gray-900"><?php echo $items; ?></span>
-                                    <h3 class="text-base font-normal text-gray-500">Items</h3>
-</a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-12">
-                    <p class="text-2xl font-bold underline">Site Stats</p>
-
-                    <div class="flex flex-row flex-wrap">
-
-                        <div class="m-3 bg-white shadow border rounded-lg p-4" aria-label="total visitors stats">
-                            <div class="flex items-center" aria-label="total visitors">
-                                <span class="text-xl sm:text-xl leading-none font-bold text-gray-900">
-                                    0
-                                </span>
-                                <h3 class="text-base font-normal text-gray-500">Total Posts</h3>
-                            </div>
-                        </div>
-                        <div class="m-3 bg-white shadow border rounded-lg p-4" aria-label="total visitors stats">
-                            <div class="flex items-center" aria-label="total visitors">
-                                <span class="text-xl sm:text-xl leading-none font-bold text-gray-900">
-                                    0
-                                </span>
-                                <h3 class="text-base font-normal text-gray-500">Total Comments</h3>
-                            </div>
-                        </div>
-                        <div class="m-3 bg-white shadow border rounded-lg p-4" aria-label="total visitors stats">
-
-                            <div class="flex items-center" aria-label="total visitors">
-                                <span class="text-xl sm:text-xl leading-none font-bold text-gray-900">
-                                    <?php echo $visitors ?>
-                                </span>
-                                <h3 class="text-base font-normal text-gray-500">Total Visitors</h3>
-                            </div>
-                        </div>
-
-                        <div class="m-3 bg-white shadow border rounded-lg p-4" aria-label="total visitors stats">
-                            <div class="flex items-center" aria-label="total visitors">
-                                <span class="text-xl sm:text-xl leading-none font-bold text-gray-900">
-                                    0
-                                </span>
-                                <h3 class="text-base font-normal text-gray-500">Total Votes</h3>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+            <div class="card-body fs-6">
+                <h4>Name: <?php echo $user->getDisplayName(); ?> </h4>
+                <h4>Email: <?php echo $user->email; ?></h4>
+                <h4>since: <?php echo $user->joined; ?></h4>
+                <h4>role: <?php echo $user->role->getDisplayName(); ?></h4>
+            </div>
+            <div class="card-footer d-flex flex-wrap">
+                <a href='/catergories' class="m-3">
+                    <button class="btn btn-info">
+                        <span class="fs-6"><?php echo $catergories; ?> Catergories</span>
+                    </button>
+                </a>
+                <a href='/items' class="m-3">
+                    <button class="btn btn-info">
+                        <span class="fs-6"><?php echo $items; ?>Items</h3>
+                    </button>
+                </a>
             </div>
         </div>
     </div>

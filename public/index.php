@@ -57,8 +57,6 @@ $app->router->get('/auth/logout', [AuthController::class, 'logout']);
 
 // Dashboard controller
 $app->router->get('/dashboard', [DashboardController::class, 'index']);
-$app->router->get('/update/profile', [DashboardController::class, 'updateProfile']);
-$app->router->post('/update/profile', [DashboardController::class, 'updateProfile']);
 
 //Catergories controller
 $app->router->get('/catergories', [CatergoryController::class, 'index']);
