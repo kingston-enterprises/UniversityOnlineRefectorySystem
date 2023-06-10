@@ -10,42 +10,40 @@ $form = new Form();
 <title><?php echo $title ?></title>
 
 <!-- Main section -->
-<section id="dashboard" class="h-screen p-10" aria-label="Dashboard Section">
-    <div class="container w-full flex justify-center text-gray-800 px-4 md:px-12">
+<section class="p-10" style="width: 100vw;">
+    <div class="container d-flex align-items-center justify-content-center border rounded p-5" style="width: 80%;">
 
-        <div class="w-10/12 rounded-lg shadow-lg py-10 md:py-8 bg-white px-4 md:px-6">
-            <div class="p-5 flex flex-row flex-wrap items-center justify-center lg:justify-start">
-                <div class="m-3 bg-white shadow border rounded-lg p-4" aria-label="total visitors stats">
-                    <a href='/catergories/new/' class="flex items-center cursor-pointer " aria-label="total visitors">
-                        <h3 class="text-base font-normal text-gray-500">Add New Catergory</h3>
-                    </a>
-                </div>
-
+        <div class="card m-2" style="width: 80%">
+            <div class="card-header">
+                <a href='/catergories/new/' class="m-3">
+                    <button class="btn btn-info">
+                        <span class="fs-6">Add New Catergory</h3>
+                    </button>
+                </a>
             </div>
-            <div class="flex flex-col">
+
+            <div class="card-body fs-6">
                 <?php
                 foreach ($catergories->getIterator() as $key => $catergory) { ?>
-                    <div class="p-5 w-12/12 flex flex-row flex-wrap items-center justify-between border-y lg:justify-start">
-                        <div class="w-5/12 flex flex-col">
+                    <div class="p-5 list-group">
+                        <div class="list-group-item d-flex flex-column">
                             <h4><?php echo $catergory->title; ?></h4>
                             <p><?php echo $catergory->description; ?></p>
                         </div>
-                        <div class=" w-5/12 flex flex-row justify-center">
-                            <div class="m-3 bg-white shadow border rounded-lg p-4" aria-label="total visitors stats">
-                                <a href='/catergories/update/<?php echo $catergory->id; ?>' class="flex items-center cursor-pointer " aria-label="total visitors">
-                                    <h3 class="text-base font-normal text-gray-500">Edit</h3>
-                                </a>
-                            </div>
-                            <div class="m-3 bg-white shadow border rounded-lg p-4" aria-label="total visitors stats">
-                                <?php $form = Form::begin('/catergories/delete/' . $catergory->id, 'post') ?>
-                                <button type="submit" class="flex items-center cursor-pointer " aria-label="total visitors">
-                                    <h3 class="text-base font-normal text-gray-500">Delete</h3>
+                        <div class="list-group-item d-flex flex-row mb-3">
+                            <a href='/catergories/update/<?php echo $catergory->id; ?>' class="mx-2">
+                                <button class="btn btn-info">
+                                    <span class="fs-6">Edit</span>
                                 </button>
+                            </a>
+                            <span class="mx-2">
+                                <?php $form = Form::begin('/catergories/delete/' . $catergory->id, 'post') ?>
 
+                                <button type='submit' class="btn btn-info">
+                                    <span class="fs-6">Delete</span>
+                                </button>
                                 <?php Form::end() ?>
-
-
-                            </div>
+                            </span>
                         </div>
                     </div>
                 <?php

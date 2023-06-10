@@ -1,12 +1,5 @@
 <?php
 
-/**
- * @category controllers
- * @author kingston-5 <qhawe@kingston-enterprises.net>
- * @license For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace kingstonenterprises\app\controllers;
 
 use kingston\icarus\helpers\Collection;
@@ -104,7 +97,7 @@ class CatergoryController extends Controller
 
             if ($catergory->validate() && $catergory->update($catergory->id)) {
 
-                Application::$app->session->setFlash('success', 'New catergory created');
+                Application::$app->session->setFlash('success', 'catergory updated');
                 Application::$app->response->redirect('/catergories');
                 return 'Show success page';
             }

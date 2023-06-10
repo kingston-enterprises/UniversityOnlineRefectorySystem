@@ -36,9 +36,7 @@ class ItemCatergory extends DbModel
         // form submission rules
         $this->setRules(
             [
-                'title' => [self::RULE_REQUIRED, [
-                    self::RULE_UNIQUE, 'class' => self::class
-                ]],
+                'title' => [self::RULE_REQUIRED],
                 'description' => [self::RULE_REQUIRED]
             ]
         );
