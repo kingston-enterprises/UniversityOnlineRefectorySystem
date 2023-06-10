@@ -27,7 +27,7 @@ if (!Application::isGuest()) {
     <!-- popper js cdn -->
 </head>
 
-<body class="">
+<body style="width: 100vw;height: 100vh;">
     <nav class="navbar navbar-expand-lg bg-warning-tertiary">
         <div class="container-fluid">
             <a class="nav-link active" href="/">Home</a>
