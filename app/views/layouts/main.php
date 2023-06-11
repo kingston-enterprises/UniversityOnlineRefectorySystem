@@ -61,7 +61,7 @@ if (!Application::isGuest()) {
 
                 </ul>
             </div>
-            <a class="nav-link active" href="/cart">cart</a>
+            <a class="nav-link active" href="/orders">orders</a>
 
         </div>
     </nav>

@@ -1,11 +1,11 @@
 <?php
 
-class m0012_create_carts_table
+class m0012_create_orders_table
 {
     public function up()
     {
         $db = kingston\icarus\Application::$app->db;
-        $SQL = "CREATE TABLE IF NOT EXISTS carts (
+        $SQL = "CREATE TABLE IF NOT EXISTS orders (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 user_id INT,
                 total INT,
@@ -19,7 +19,7 @@ class m0012_create_carts_table
     public function down()
     {
         $db = kingston\icarus\Application::$app->db;
-        $SQL = "DROP TABLE IF EXISTS carts;";
+        $SQL = "DROP TABLE IF EXISTS orders;";
         $db->pdo->exec($SQL);
     }
 }

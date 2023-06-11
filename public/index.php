@@ -7,7 +7,7 @@ use kingstonenterprises\app\controllers\DashboardController;
 use kingstonenterprises\app\controllers\CatergoryController;
 use kingstonenterprises\app\controllers\ItemsController;
 use kingstonenterprises\app\models\Visitor;
-use kingstonenterprises\app\controllers\CartController;
+use kingstonenterprises\app\controllers\OrderController;
 
 
 use kingston\icarus\Application;
@@ -77,8 +77,8 @@ $app->router->get('/items/delete/{id}', [ItemsController::class, 'delete']);
 $app->router->post('/items/delete/{id}', [ItemsController::class, 'delete']);
 
 // Carts Controller
-$app->router->get('/cart', [CartController::class, 'index']);
-$app->router->post('/cart/insert/{id}', [CartController::class, 'insert']);
-$app->router->get('/cart/delete/{id}', [CartController::class, 'delete']);
+$app->router->get('/orders', [OrderController::class, 'index']);
+$app->router->post('/orders/insert/{id}', [OrderController::class, 'insert']);
+$app->router->get('/orders/delete/{id}', [OrderController::class, 'delete']);
 
 $app->run();

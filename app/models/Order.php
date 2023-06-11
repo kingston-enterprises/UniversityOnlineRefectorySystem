@@ -4,36 +4,35 @@ namespace kingstonenterprises\app\models;
 
 use kingston\icarus\DbModel;
 
-class CartItem extends DbModel
+class Order extends DbModel
 {
     /** @var integer id */
     public int $id = 0;
 
-    /** @var int user_id */
-    public int $user_id = 0;
+    /** @var string user_id */
+    public string $user_id = '';
 
-    /** @var int cart_id */
-    public int $cart_id = 0;
+    /** @var int total */
+    public int $total = 0;
 
-    /** @var int item_id */
-    public int $item_id = 0;
+    /** @var integer settled */
+    public int $settled = 0;
 
-    /** @var string date_added */
-    public string $date_added = '';
+    /** @var string date_created */
+    public string $date_created = '';
 
 
     public function __construct()
     {
         $this->setAttributes(
-            ['user_id', 'cart_id', 'item_id', 'date_added']
+            [ 'user_id', 'total', 'settled', 'date_created']
         );
         // form submission rules
         $this->setRules(
             [
                 'user_id' => [self::RULE_REQUIRED],
-                'cart_id' => [self::RULE_REQUIRED],
-                'item_id' => [self::RULE_REQUIRED],
-                'date_added' => [self::RULE_REQUIRED]
+                'total' => [self::RULE_REQUIRED],
+                'settled' => [self::RULE_REQUIRED]
             ]
         );
     }
@@ -45,7 +44,7 @@ class CartItem extends DbModel
      */
     public static function tableName(): string
     {
-        return 'cart_items';
+        return 'orders';
     }
 
     public function save(): bool
@@ -56,6 +55,6 @@ class CartItem extends DbModel
 
     public function getDisplayName(): string
     {
-        return $this->item_id;
+        return $this->date_created . ':' . ($this->settled == 1) ? "Yes" : "No";
     }
 }
