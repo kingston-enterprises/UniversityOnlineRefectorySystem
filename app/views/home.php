@@ -60,9 +60,12 @@ $form = new Form();
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo $item->title; ?></h5>
                                     <p class="card-text"><?php echo $item->description; ?></p>
-                            <p>Available: <?php echo ($item->available == 1) ? "Yes" : "No";?></p>
+                                    <p>Available: <?php echo ($item->available == 1) ? "Yes" : "No"; ?></p>
+                                    <?php $form = Form::begin('/cart/insert/' . $item->id, 'post') ?>
+                                    <input type='submit' class="btn btn-primary" vaue='Add To Cart'/>
 
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+
+                                        <?php Form::end() ?>
                                 </div>
                             </div>
 

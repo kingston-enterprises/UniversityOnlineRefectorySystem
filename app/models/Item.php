@@ -1,21 +1,9 @@
 <?php
 
-/**
- * @category models
- * @author kingston-5 <qhawe@kingston-enterprises.net>
- * @license For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace kingstonenterprises\app\models;
 
 use kingston\icarus\DbModel;
 
-/**
- * Items class used to represent items in the system
- * 
- * @extends \kingston\icarus\DbModel
- */
 class Item extends DbModel
 {
     /** @var integer id */
