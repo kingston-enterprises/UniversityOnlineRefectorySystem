@@ -27,42 +27,39 @@ if (!Application::isGuest()) {
     <!-- popper js cdn -->
 </head>
 
-<body style="width: 100vw;height: 100vh;">
-    <nav class="navbar navbar-expand-lg bg-warning-tertiary">
-        <div class="container-fluid d-flex flex-row justify-content-between">
-            <a class="nav-link active" href="/">Home</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<body>
+    <nav class="navbar navbar-expand-lg " style="background-color: #FF0000;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Online Refectory System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <?php if (Application::isGuest()) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/orders">orders</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Profile
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <?php if (Application::isGuest()) : ?>
 
-                        <li class="nav-item">
-                            <a class="nav-link active" href="/auth/login/">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="/auth/register/">Register</a>
-                        </li>
-                    <?php else : ?>
+                                <li><a class="dropdown-item" href="/auth/login/">Login</a></li>
+                                <li><a class="dropdown-item" href="/auth/register/">Register</a></li>
+                            <?php else : ?>
 
-                        <li class="nav-item">
-                            <a class="nav-link active" href="/dashboard">
-                                <?php echo $user->getDisplayName() ?>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="/auth/logout">
-                                Logout
-                            </a>
-                        </li>
-                    <?php endif; ?>
+                                <li><a class="dropdown-item" href="/dashboard">
+                                        <?php echo $user->getDisplayName() ?></a></li>
+                                <li><a class="dropdown-item" href="/auth/logout">
+                                        Logout</a></li>
+                            <?php endif; ?>
 
+                        </ul>
+                    </li>
                 </ul>
             </div>
-            <a class="nav-link active" href="/orders">orders</a>
-
         </div>
     </nav>
 
