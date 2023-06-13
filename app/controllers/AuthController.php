@@ -9,30 +9,22 @@ use kingston\icarus\Request;
 use kingstonenterprises\app\models\User;
 use kingstonenterprises\app\models\Permission;
 
-/**
- * controls the the sites user authorisation functions e.g login, registration and logout
- *
- * @extends \kingston\icarus\Controller
- */
 class AuthController extends Controller
 {
-    /**
-     * render user login page Or if user submitted login form, check 
-     * if user details are valid and login user
-     *
-     * @param Request $request
-     * @return string
-     */
     public function login(Request $request) : string
     {
-        $user = new User();
+        $userModel = new User();
+        $permissionModel = new Permission();
+
         
         if ($request->getMethod() === 'post') {
-            $user->loadData($request->getBody());
-            if ($user->loginValid()) {
-            	$user = $user->findOne(['email' => $request->getBody()['email']]); 
-
+            $userModel->loadData($request->getBody());
+            if ($userModel->loginValid()) {
+                
+            	$user = $userModel->findOne(['email' => $request->getBody()['email']]); 
+            	$permission = $permissionModel->findOne(['user_id' => $user->id]); 
             	Application::$app->session->set('user', $user->id);
+            	Application::$app->session->set('role', $permission->role_id);
                 Application::$app->session->setFlash('success', 'Welcome ' . $user->getDisplayName());
                 Application::$app->response->redirect('/dashboard');
 
@@ -41,18 +33,11 @@ class AuthController extends Controller
         
         return $this->render('auth/login', [
         	'title' => 'Login',
-            'model' => $user
+            'model' => $userModel
         ]);
         
     }
 
-    /**
-     * render user login page Or if user submitted login form, check 
-     * if user details are valid and save them in the Database
-     *
-     * @param Request $request
-     * @return string
-     */
     public function register(Request $request) : string
     {
     	

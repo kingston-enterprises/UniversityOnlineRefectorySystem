@@ -20,7 +20,12 @@ use kingston\icarus\Application;
                 <h4>role: <?php echo $user->role->getDisplayName(); ?></h4>
             </div>
             <div class="card-footer d-flex flex-wrap">
-                <a href='/catergories' class="m-3">
+
+                <?php
+                var_dump(Application::$app->session->get('role'));
+                if (Application::$app->session->get('role') == 1) { // admin actions
+                ?>
+<a href='/catergories' class="m-3">
                     <button class="btn btn-info">
                         <span class="fs-6"><?php echo $catergories; ?> Catergories</span>
                     </button>
@@ -29,7 +34,16 @@ use kingston\icarus\Application;
                     <button class="btn btn-info">
                         <span class="fs-6"><?php echo $items; ?>Items</h3>
                     </button>
+                </a><a href='/orders/view' class="m-3">
+                    <button class="btn btn-info">
+                        <span class="fs-6"><?php echo $orders; ?> orders</span>
+                    </button>
                 </a>
+
+                <?php
+                } 
+                ?>
+                
             </div>
         </div>
     </div>

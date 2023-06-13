@@ -80,5 +80,7 @@ $app->router->post('/items/delete/{id}', [ItemsController::class, 'delete']);
 $app->router->get('/orders', [OrderController::class, 'index']);
 $app->router->post('/orders/insert/{id}', [OrderController::class, 'insert']);
 $app->router->get('/orders/delete/{id}', [OrderController::class, 'delete']);
+$app->router->get('/orders/view', [OrderController::class, 'view']);
+$app->router->get('/orders/pay/{id}', [OrderController::class, 'pay']);
 
 $app->run();

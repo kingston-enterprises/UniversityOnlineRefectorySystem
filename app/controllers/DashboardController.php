@@ -9,6 +9,7 @@ use kingston\icarus\Request;
 use kingston\icarus\helpers\Collection;
 use kingstonenterprises\app\models\ItemCatergory;
 use kingstonenterprises\app\models\Item;
+use kingstonenterprises\app\models\Order;
 use kingstonenterprises\app\models\User;
 use kingstonenterprises\app\models\Visitor;
 use kingstonenterprises\app\models\Role;
@@ -42,8 +43,10 @@ class DashboardController extends Controller
         $permissionModel = new Permission;
         $catergoriesModel = new ItemCatergory;
         $itemsModel = new Item;
+        $ordersModel = new Order;
 
         $visitors = new Collection($visitorModel->getAll());
+        $orders = new Collection($ordersModel->getAll());
 
 
         $user = $userModel->findOne(['id' => Application::$app->session->get('user')]);
@@ -60,7 +63,8 @@ class DashboardController extends Controller
             'visitors' => $visitors->count(),
             'user' => $user,
             'catergories' => count($catergories),
-            'items' => count($items)
+            'items' => count($items),
+            'orders' => $orders->count()
         ]);
     }
 

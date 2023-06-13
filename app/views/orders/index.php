@@ -4,8 +4,6 @@ namespace kingston\icarus\form;
 
 $form = new Form();
 
-
-
 ?>
 <title><?php echo $title ?></title>
 
@@ -26,7 +24,7 @@ $form = new Form();
 
     <div class="card m-2" style="width: 80%">
         <div class="card-header">
-            <p>Your Orders</p>
+            <p>All Orders</p>
         </div>
 
         <div class="accordion p-5 d-flex justify-content-center align-items-center" id="accordionExample">
@@ -38,6 +36,7 @@ $form = new Form();
 
                 <?php } else {
                 foreach ($orders->getIterator() as $order) { ?>
+                
                     <div class="accordion-item" style="width: 90%;">
                         <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button d-flex flex-column aling-items-start" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
