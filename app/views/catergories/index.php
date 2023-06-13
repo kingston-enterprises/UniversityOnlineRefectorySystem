@@ -11,7 +11,7 @@ $form = new Form();
 
 <!-- Main section -->
 <section class="p-10" style="width: 100vw;">
-    <div class="container d-flex align-items-center justify-content-center border rounded p-5" style="width: 80%;">
+    <div class="container d-flex align-items-center justify-content-center border rounded m-5 p-5">
 
         <div class="card m-2" style="width: 80%">
             <div class="card-header">
@@ -32,14 +32,14 @@ $form = new Form();
                         </div>
                         <div class="list-group-item d-flex flex-row mb-3">
                             <a href='/catergories/update/<?php echo $catergory->id; ?>' class="mx-2">
-                                <button class="btn btn-info">
+                                <button class="btn btn-warning">
                                     <span class="fs-6">Edit</span>
                                 </button>
                             </a>
                             <span class="mx-2">
                                 <?php $form = Form::begin('/catergories/delete/' . $catergory->id, 'post') ?>
 
-                                <button type='submit' class="btn btn-info">
+                                <button type='submit' class="btn btn-danger">
                                     <span class="fs-6">Delete</span>
                                 </button>
                                 <?php Form::end() ?>

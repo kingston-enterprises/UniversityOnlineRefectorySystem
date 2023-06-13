@@ -12,15 +12,29 @@ $form = new Form();
     <div class="container d-flex align-items-center justify-content-center border rounded p-5" style="width: 80%;">
 
         <div class="card m-2" style="width: 80%">
+        <div class="card-header">
+                <h4>Edit <?php echo $catergory->title ?></h4>
+            </div>
             <div class="card-body">
                 <?php $form = Form::begin('', 'post') ?>
-                    <?php echo $form->field($model, 'title', $catergory->title) ?>
-                    <?php echo $form->textArea($model, 'description', $catergory->description, 3) ?>
 
-                <button type="submit" class="btn btn-success">Update Catergory</button>
+                <div class="mb-3">
+                    <label for="title" class="form-label">Catergory Title</label>
+                    <div id="titleHelp" class="form-text">e.g breakfast foods</div>
+                    <?php echo $form->field($model, 'title') ?>
+                </div>
 
+                <div class="mb-3">
+                    <label for="Catergory" class="form-label">Catergory description</label>
+                    <div id="catergoryHelp" class="form-text">e.g hot breakfast foods</div>
+                    <?php echo $form->textArea($model, 'description', 'Catergory Description', 3) ?>
+                </div>
+
+                <button type="submit" class="btn btn-success">Edit Catergory</button>
                 <?php Form::end() ?>
             </div>
+
+
         </div>
 
     </div>

@@ -3,27 +3,15 @@
 namespace kingstonenterprises\app\controllers;
 
 use kingston\icarus\helpers\Collection;
-
-
 use kingston\icarus\Application;
 use kingston\icarus\Controller;
 use kingston\icarus\Request;
 use kingstonenterprises\app\models\ItemCatergory;
 
 
-/**
- * controls the the sites  category CRUD operations
- *
- * @extends \kingston\icarus\Controller
- */
 class CatergoryController extends Controller
 {
 
-    /**
-     * collect catergories and render index view
-     * 
-     * @return string
-     */
     public function index()
     {
 
@@ -33,7 +21,6 @@ class CatergoryController extends Controller
         }
 
         $catergoriesModel = new ItemCatergory;
-
         $catergories = new Collection($catergoriesModel->getAll());
 
         return $this->render('catergories/index', [
@@ -42,12 +29,6 @@ class CatergoryController extends Controller
         ]);
     }
 
-    /**
-     * create a new catergory or render the creation form
-     * 
-     * @param Request
-     * @return string
-     */
     public function create(Request $request)
     {
 
@@ -62,7 +43,6 @@ class CatergoryController extends Controller
             $catergoriesModel->loadData($request->getBody());
 
             if ($catergoriesModel->validate() && $catergoriesModel->save()) {
-
                 Application::$app->session->setFlash('success', 'New catergory created');
                 Application::$app->response->redirect('/catergories');
                 return 'Show success page';
@@ -75,12 +55,6 @@ class CatergoryController extends Controller
         ]);
     }
 
-    /**
-     * update an existing catergory or render the update form
-     * 
-     * @param Request
-     * @return string
-     */
     public function update(Request $request)
     {
 
@@ -110,12 +84,6 @@ class CatergoryController extends Controller
         ]);
     }
 
-    /**
-     * delete a new catergory
-     * 
-     * @param Request
-     * @return string
-     */
     public function delete(Request $request)
     {
 
@@ -137,11 +105,7 @@ class CatergoryController extends Controller
             }
         }
 
-        $catergories = new Collection($catergoriesModel->getAll());
 
-        return $this->render('catergories/index', [
-            'title' => 'Catergories Dashboard',
-            'catergories' => $catergories
-        ]);
+        Application::$app->response->redirect('/catergories');
     }
 }
