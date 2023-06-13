@@ -1,11 +1,9 @@
 <?php
 
 namespace kingstonenterprises\app\controllers;
-
 use kingston\icarus\Application;
 use kingston\icarus\Controller;
 use kingston\icarus\Request;
-
 use kingstonenterprises\app\models\User;
 use kingstonenterprises\app\models\Permission;
 
@@ -67,11 +65,6 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * logout User
-     *
-     * @return void
-     */
     public function logout() : void
     {
         Application::$app->session->remove('user');
@@ -79,6 +72,4 @@ class AuthController extends Controller
         
     }
 	
-
-
 }
