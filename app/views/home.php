@@ -8,17 +8,19 @@ $form = new Form();
 <title><?php echo $title ?></title>
 
 <!-- Landing Area -->
-
 <section class="p-10 container d-flex align-items-center justify-content-center" style="width: 100vw;">
 
-    <div class="accordion" id="accordionExample" style="width: 80%;">
+    <div class="accordion m-5" id="accordionExample" style="width: 80%;">
         <?php
         foreach ($catergories->getIterator() as $key => $catergory) { ?>
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button d-flex flex-column alilg-items-start" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <div>
                         <p><?php echo $catergory->title; ?></p>
-                        <p><?php echo $catergory->description; ?></p>
+                    </div>
+
+                    <button class="accordion-button d-flex flex-column alilg-items-start" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+
                     </button>
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -32,10 +34,9 @@ $form = new Form();
                                     <p class="card-text"><?php echo $item->description; ?></p>
                                     <p>Available: <?php echo ($item->available == 1) ? "Yes" : "No"; ?></p>
                                     <?php $form = Form::begin('/orders/insert/' . $item->id, 'post') ?>
-                                    <input type='submit' class="btn btn-primary" vaue='Add To Cart'/>
+                                    <button type="submit" class="btn btn-primary">Order</button>
 
-
-                                        <?php Form::end() ?>
+                                    <?php Form::end() ?>
                                 </div>
                             </div>
 
