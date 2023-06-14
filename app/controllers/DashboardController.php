@@ -11,24 +11,13 @@ use kingstonenterprises\app\models\ItemCatergory;
 use kingstonenterprises\app\models\Item;
 use kingstonenterprises\app\models\Order;
 use kingstonenterprises\app\models\User;
-use kingstonenterprises\app\models\Visitor;
 use kingstonenterprises\app\models\Role;
 use kingstonenterprises\app\models\Permission;
 
 
-/**
- * controls the the sites dashboard views
- *
- * @extends \kingston\icarus\Controller
- */
 class DashboardController extends Controller
 {
 
-    /**
-     * collect stats and render dashboard
-     * 
-     * @return string
-     */
     public function index()
     {
 
@@ -37,7 +26,6 @@ class DashboardController extends Controller
             Application::$app->response->redirect('/auth/login');
         }
 
-        $visitorModel = new Visitor;
         $userModel = new User;
         $roleModel = new Role;
         $permissionModel = new Permission;
@@ -45,7 +33,6 @@ class DashboardController extends Controller
         $itemsModel = new Item;
         $ordersModel = new Order;
 
-        $visitors = new Collection($visitorModel->getAll());
         $orders = new Collection($ordersModel->getAll());
 
 
@@ -60,7 +47,6 @@ class DashboardController extends Controller
 
         return $this->render('dashboard/index', [
             'title' => 'Dashboard',
-            'visitors' => $visitors->count(),
             'user' => $user,
             'catergories' => count($catergories),
             'items' => count($items),

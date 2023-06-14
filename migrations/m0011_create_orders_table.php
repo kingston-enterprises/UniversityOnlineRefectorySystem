@@ -1,6 +1,6 @@
 <?php
 
-class m0012_create_orders_table
+class m0011_create_orders_table
 {
     public function up()
     {

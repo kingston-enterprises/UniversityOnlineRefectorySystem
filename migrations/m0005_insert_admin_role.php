@@ -1,6 +1,6 @@
 <?php
 
-class m0009_insert_normal_role {
+class m0005_insert_admin_role {
     public function up()
     {
         $db = kingston\icarus\Application::$app->db;
@@ -8,8 +8,8 @@ class m0009_insert_normal_role {
             title,
             description
         ) VALUES (
-            'normal',
-            'Just a normal user'
+            'admin',
+            'Admin users have access to everything'
             )";
 
         $db->pdo->exec($SQL);
@@ -18,7 +18,7 @@ class m0009_insert_normal_role {
     public function down()
     {
         $db = kingston\icarus\Application::$app->db;
-        $SQL = "DELETE FROM roles WHERE `title` = 'normal';";
+        $SQL = "DELETE FROM roles WHERE `title` = 'admin';";
         $db->pdo->exec($SQL);
     }
 }

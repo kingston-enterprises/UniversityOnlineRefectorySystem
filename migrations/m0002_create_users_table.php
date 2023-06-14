@@ -1,6 +1,6 @@
 <?php
 
-class m0003_create_users_table {
+class m0002_create_users_table {
     public function up()
     {
         $db = kingston\icarus\Application::$app->db;

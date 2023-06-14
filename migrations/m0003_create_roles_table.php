@@ -1,6 +1,6 @@
 <?php
 
-class m0004_create_roles_table {
+class m0003_create_roles_table {
     public function up()
     {
         $db = kingston\icarus\Application::$app->db;

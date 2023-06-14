@@ -1,6 +1,6 @@
 <?php
 
-class m0005_insert_admin_user {
+class m0003_insert_admin_user {
     public function up()
     {
         $db = kingston\icarus\Application::$app->db;

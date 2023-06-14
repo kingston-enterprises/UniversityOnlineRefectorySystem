@@ -1,7 +1,7 @@
 
 <?php
 
-class m0013_create_order_items_table
+class m0012_create_order_items_table
 {
     public function up()
     {

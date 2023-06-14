@@ -1,15 +1,15 @@
 <?php
 
-class m0006_insert_admin_role {
+class m0007_insert_admin_permision {
     public function up()
     {
         $db = kingston\icarus\Application::$app->db;
-        $SQL = "INSERT INTO roles (
-            title,
-            description
+        $SQL = "INSERT INTO permissions (
+            user_id,
+            role_id
         ) VALUES (
-            'admin',
-            'Admin users have access to everything'
+            '1',
+            '1'
             )";
 
         $db->pdo->exec($SQL);
@@ -18,7 +18,7 @@ class m0006_insert_admin_role {
     public function down()
     {
         $db = kingston\icarus\Application::$app->db;
-        $SQL = "DELETE FROM roles WHERE `title` = 'admin';";
+        $SQL = "DELETE FROM permissions WHERE `user_id` = '1';";
         $db->pdo->exec($SQL);
     }
 }

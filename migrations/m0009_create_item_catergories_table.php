@@ -1,19 +1,14 @@
 <?php
 
-class m0011_create_items_table
+class m0009_create_item_catergories_table
 {
     public function up()
     {
         $db = kingston\icarus\Application::$app->db;
-        $SQL = "CREATE TABLE items (
+        $SQL = "CREATE TABLE IF NOT EXISTS item_catergories (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 title VARCHAR(255) NOT NULL,
-                description VARCHAR(255) NOT NULL,
-                available INT DEFAULT 0,
-                price FLOAT,
-                catergory_id INT,
-                img_src VARCHAR(255),
-                FOREIGN KEY (catergory_id) REFERENCES item_catergories (id)
+                description VARCHAR(255) NOT NULL
                ) ENGINE=INNODB";
         $db->pdo->exec($SQL);
     }
@@ -21,7 +16,7 @@ class m0011_create_items_table
     public function down()
     {
         $db = kingston\icarus\Application::$app->db;
-        $SQL = "DROP TABLE IF EXISTS items;";
+        $SQL = "DROP TABLE IF EXISTS item_catergories;";
         $db->pdo->exec($SQL);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-class m0007_create_permisions_table {
+class m0006_create_permisions_table {
     public function up()
     {
         $db = kingston\icarus\Application::$app->db;
